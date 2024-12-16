@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+html, body {
+    height: 100%; /* O html e o body precisam ocupar a altura total */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+    
+  /* Main (que envolve o router-outlet) deve preencher o restante do espaço */
+  main {
+    flex: 1; /* Permite que o conteúdo do router-outlet ocupe o espaço disponível */
+    display: flex;
+    flex-direction: column;
+  }
+  
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* O contêiner principal deve ocupar toda a altura */
+  }

@@ -1,0 +1,26 @@
+<div class="weather-modal">
+<h1 mat-dialog-title>Clima atual em {{ data.name }}</h1>
+
+<div mat-dialog-content>
+  <img src="https://openweathermap.org/img/wn/{{data.weather[0]?.icon}}@2x.png" alt="Ícone do clima" class="weather-icon">
+  <p><strong>Descrição:&nbsp; </strong> {{ data.weather[0]?.description }}</p>
+  <p><strong>Temperatura:&nbsp; </strong> {{ data.main.temp | number: '1.0-1' }} °C</p>
+  <p><strong>Temperatura mínima:&nbsp; </strong> {{ data.main.tempMin | number: '1.0-1' }} °C</p>
+  <p><strong>Temperatura máxima:&nbsp; </strong> {{ data.main.tempMax | number: '1.0-1' }} °C</p>
+  <p><strong>Umidade:&nbsp; </strong> {{ data.main.humidity }}%</p>
+  <p><strong>Velocidade do vento:&nbsp; </strong> {{ data.wind.speed }} m/s</p>
+</div>
+
+<h1 mat-dialog-title>Previsão para 5 dias</h1>
+
+<div mat-dialog-content *ngFor="let forecastData of data.wheatherForecastData">
+  <div class="inline">
+    <p>{{ forecastData.date }} - {{forecastData.tempMin}}ºC/{{forecastData.tempMax}}ºC - {{forecastData.description}}</p>
+    <img src="https://openweathermap.org/img/wn/{{forecastData.icon}}@2x.png" alt="Ícone do clima" class="weather-forecast-icon">
+    </div>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Fechar</button>
+</div>
+</div>

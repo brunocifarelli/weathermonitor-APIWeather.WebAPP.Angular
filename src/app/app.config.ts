@@ -1,9 +1,22 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { InjectionToken } from '@angular/core';
 
-import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+export interface AppConfig {
+  jwtLocalStorageKey: string;
+  apiUrl: string;
+  authUrl: string;
+  userUrl: string;
+  weatherUrl: string;
+  cityUrl: string;
+}
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay())]
-};
+export const APP_CONFIG = new InjectionToken<AppConfig>('app.config', {
+  providedIn: 'root',
+  factory: () => ({
+    jwtLocalStorageKey: 'jwt_token',
+    apiUrl: 'https://localhost:7099/api',
+    authUrl: 'https://localhost:7099/api/auth',
+    userUrl: 'https://localhost:7099/api/usuarios',
+    weatherUrl: 'https://localhost:7099/api/weatherForecast',
+    cityUrl: 'https://localhost:7099/api/cidadesFavoritas',
+  })
+});

@@ -1,0 +1,50 @@
+<div class = "container">
+  <div class="menu-bar">
+  <div class="menu-left">
+    <button mat-raised-button (click)="getFavoritesCities()">Cidades favoritas</button>
+  </div>
+
+  <div class="search-container">
+    <input 
+      type="text" 
+      placeholder="Digite o nome da cidade..." 
+      [(ngModel)]="searchTerm" 
+      (input)="onSearchChange()"
+    />
+  </div>
+
+  <div class="menu-right">
+    <div class="user-menu">
+      <span>Olá, {{ userName }}</span>
+      <mat-icon class="menu-icon">expand_more</mat-icon>
+      <div class="user-menu-dropdown">
+        <button class="logout-button" mat-raised-button (click)="logout()">Sair</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="results-container">
+  <h1 *ngIf="cities.length > 0">{{searchedCity}}</h1>
+  <!-- Lista de cidades encontradas -->
+  <div class="card-container" *ngIf="cities.length > 0 && (searchPerformed || showFavorites)">
+    <mat-card class="card" *ngFor="let city of cities">
+      <mat-card-header>
+        <mat-card-title>{{ city.name }}</mat-card-title>
+        <mat-card-subtitle *ngIf="city.state !== undefined && city.country !== undefined">
+          {{ city.state }}, {{ city.country }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-actions class="card-actions">
+        <button mat-raised-button (click)="consultCity(city)">Consultar</button>
+        <button mat-icon-button (click)="saveFavoriteCity(city)">
+          <mat-icon>{{ city.isFavorite ? 'favorite' : 'favorite_border' }}</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
+  <!-- Mensagem quando nenhuma cidade for encontrada -->
+  <p *ngIf="cities.length === 0 && (searchPerformed || showFavorites)">Nenhuma cidade encontrada.</p>
+</div></div>

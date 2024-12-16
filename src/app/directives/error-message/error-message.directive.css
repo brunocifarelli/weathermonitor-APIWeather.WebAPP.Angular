@@ -1,0 +1,18 @@
+.error-modal {
+    text-align: center;
+    padding: 20px;
+  }
+  .error-icon {
+    margin-bottom: 15px;
+  }
+  .error-icon-large {
+    color: #c70000;
+    font-size: 48px;
+    display: contents;
+  }
+  .error-message {
+    margin-bottom: 15px;
+  }
+  .modal-actions {
+    text-align: center;
+  }
